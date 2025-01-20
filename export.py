@@ -494,7 +494,7 @@ def run(data=ROOT / 'data/coco128.yaml',  # 'dataset.yaml path'
     # TensorFlow Exports
     if any((saved_model, pb, tflite, edgetpu, tfjs)):
         if int8 or edgetpu:  # TFLite --int8 bug https://github.com/ultralytics/yolov5/issues/5707
-            check_requirements(('flatbuffers==1.12',))  # required before `import tensorflow`
+            check_requirements(('flatbuffers>=1.12',))  # required before `import tensorflow`
         assert not (tflite and tfjs), 'TFLite and TF.js models must be exported separately, please pass only one type.'
         model, f[5] = export_saved_model(model, im, file, dynamic, tf_nms=nms or agnostic_nms or tfjs,
                                          agnostic_nms=agnostic_nms or tfjs, topk_per_class=topk_per_class,
